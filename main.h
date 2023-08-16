@@ -20,4 +20,6 @@ int exec_cmd(const char *pathname, char **argv);
 
 ssize_t prompt(char **line, size_t *buffsize);
 
+char **tokenize(char *string, char *delim);
+
 #endif
