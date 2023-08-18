@@ -2,17 +2,17 @@
 /**
  * tokenize - tokenize a given string
  * @string: a string to tokinize
- * @delim: a string contain the delimeters
  * note: to free allocated memory
  * 1- free only the first element of argv `argv[0]`
  * 2- free argv
  * Return: a array of strings
  */
-char **tokenize(char *string, char *delim)
+char **tokenize(char *string)
 {
 	char **argv;
 	char *copystr;
 	int toknum, i, ch = 0;
+	char *delim[] = {' ', '\t', '\n'};
 
 	copystr = malloc(strlen(string) + 1);
 	if (!copystr)
@@ -20,9 +20,7 @@ char **tokenize(char *string, char *delim)
 		perror("Error: ");
 		exit(-1);
 	}
-	/* Here is a function that need replace */
 	strcpy(copystr, string);
-	/****************************************/
 	strtok(copystr, delim);
 	for (toknum = 1; strtok(NULL, delim); toknum++)
 	{}
@@ -45,4 +43,3 @@ char **tokenize(char *string, char *delim)
 	argv[i] = NULL;
 	return (argv);
 }
-
