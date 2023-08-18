@@ -6,25 +6,26 @@
 */
 int main(void)
 {
+	full_cmd c;
 	char *line;
 	size_t buffsize;
 	ssize_t strl;
-	char *cmd;
-	char **argv = NULL;
 
+	(void) strl;
+
+	/** Infinite loop for handling the shell */
 	while (1)
 	{
+		/** Handling User Input And Execution */
 		line = NULL;
 		strl = prompt(&line, &buffsize);
-		cmd = malloc(sizeof(char) * strl);
-		strncpy(cmd, line, (strl - 1));
-		argv = malloc(sizeof(cmd));
-		argv[0] = cmd;
-		exec_cmd(cmd, argv);
-		/* We will need it later but for now */
-		(void) strl;
-		/**********************/
+		c = get_args(line);
+		exec_cmd(c.cmd, c.args);
+
+		/** Freeing Allocated Memory */
 		free(line);
+		free(c.args[0]);
+		free(c.args);
 	}
 	return (0);
 }

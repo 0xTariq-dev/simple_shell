@@ -12,7 +12,7 @@ char **tokenize(char *string)
 	char **argv;
 	char *copystr;
 	int toknum, i, ch = 0;
-	char *delim[] = {' ', '\t', '\n'};
+	char delim[] = {' ', '\t', '\n'};
 
 	copystr = malloc(strlen(string) + 1);
 	if (!copystr)
