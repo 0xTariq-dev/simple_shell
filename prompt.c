@@ -10,12 +10,14 @@ ssize_t prompt(char **line, size_t *buffsize)
 	ssize_t strl;
 
 	/* Printing the prompt */
-	write(1, "($) ", 4);
+	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+		write(1, "($) ", 4);
 	/* Take the command from the user and check for errors */
 	strl = getline(line, buffsize, stdin);
 	if (strl == -1)
 	{
-		printf("Exiting\n");
+		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
+			write(1, "\n", 1);
 		free(*line);
 		exit(-1);
 	}
