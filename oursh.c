@@ -21,11 +21,8 @@ int main(void)
 		strl = prompt(&line, &buffsize);
 		c = get_args(line);
 		c.cmd = _which(c.cmd);
-		if (c.cmd != NULL)
-		{
-			exec_cmd(c.cmd, c.args);
-			free(c.cmd);
-		}
+		exec_cmd(c.cmd, c.args);
+
 		/** Freeing Allocated Memory */
 		free(line);
 		free(c.args[0]);
