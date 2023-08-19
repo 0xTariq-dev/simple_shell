@@ -16,6 +16,9 @@
  *		used in the ALX Simple Shell project.
  */
 
+/* Global variables */
+extern char **environ;
+
 /* Functions in the string.c file */
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
@@ -41,5 +44,7 @@ int exec_cmd(const char *pathname, char **argv);
 ssize_t prompt(char **line, size_t *buffsize);
 char **tokenize(char *string);
 full_cmd get_args(char *line);
+char *_which(char *cmd);
+char *get_envpath();
 
 #endif

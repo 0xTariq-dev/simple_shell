@@ -20,8 +20,12 @@ int main(void)
 		line = NULL;
 		strl = prompt(&line, &buffsize);
 		c = get_args(line);
-		exec_cmd(c.cmd, c.args);
-
+		c.cmd = _which(c.cmd);
+		if (c.cmd != NULL)
+		{
+			exec_cmd(c.cmd, c.args);
+			free(c.cmd);
+		}
 		/** Freeing Allocated Memory */
 		free(line);
 		free(c.args[0]);
