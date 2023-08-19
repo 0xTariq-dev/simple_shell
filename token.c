@@ -20,7 +20,7 @@ char **tokenize(char *string)
 		perror("Error: ");
 		exit(-1);
 	}
-	strcpy(copystr, string);
+	_strcpy(copystr, string);
 	strtok(copystr, delim);
 	for (toknum = 1; strtok(NULL, delim); toknum++)
 	{}

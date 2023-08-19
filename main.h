@@ -15,6 +15,14 @@
  * Describtion: Header file contains declarations for functions
  *		used in the ALX Simple Shell project.
  */
+
+/* Functions in the string.c file */
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
+char *_strcat(char *dest, char *src);
+int _strncmp(char *s1, char *s2, size_t n);
+/**********************/
+
 /**
  * struct command - A struct to hold the command name and arguments passed.
  * @cmd: The command name.
