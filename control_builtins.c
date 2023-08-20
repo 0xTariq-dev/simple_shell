@@ -23,22 +23,3 @@ int built_in(full_cmd c)
 	}
 	return (0);
 }
-
-void our_exit(full_cmd c)
-{
-	_free(c.Gline, c.args[0], c.args, NULL);
-	exit(0);
-}
-
-void Print_env(full_cmd c)
-{
-	int i = 0;
-
-	c.cmd = _which(c.cmd);
-	exec_cmd(c.cmd, c.args);
-	if (c.args[1] == NULL)
-	{
-		for (; environ[i] != NULL; i++)
-			printf("%s\n", environ[i]);
-	}
-}
