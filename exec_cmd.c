@@ -11,8 +11,10 @@ int exec_cmd(const char *pathname, char **argv)
 {
 	int id;
 
-	/** Checking if NULL was passed and return,
-	 * If a valid pathname was passed fork the process pefore execution*/
+	/*
+	 * Checking if NULL was passed and return,
+	 * If a valid pathname was passed fork the process pefore execution
+	 */
 	if (pathname == NULL)
 	{
 		perror("Error");

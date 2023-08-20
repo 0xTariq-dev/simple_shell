@@ -11,8 +11,6 @@ int main(void)
 	size_t buffsize;
 	ssize_t strl;
 
-	(void) strl;
-
 	/** Infinite loop for handling the shell */
 	while (1)
 	{
@@ -22,14 +20,18 @@ int main(void)
 		if (strl != 1)
 		{
 			c = get_args(line);
-			c.cmd = _which(c.cmd);
-			exec_cmd(c.cmd, c.args);
+			c.Gline = line;
+			if (!built_in(c))
+			{
+				c.cmd = _which(c.cmd);
+				exec_cmd(c.cmd, c.args);
 
 			/** Freeing Allocated Memory */
-			free(c.cmd);
+				free(c.cmd);
+			}
 			free(c.args[0]);
 			free(c.args);
-		}	
+		}
 		free(line);
 	}
 	return (0);
