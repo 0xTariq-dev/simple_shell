@@ -14,15 +14,18 @@ void Print_env(full_cmd c)
 	if (c.args[1] == NULL || _strcmp(c.args[1], "-v") == 0)
 	{
 		for (; environ[i] != NULL; i++)
-			printf("%s\n", environ[i]);
+		{
+			write(1, environ[i], _strlen(environ[i]));
+			write(1, "\n", 1);
+		}
 	}
 	if (c.args[1] != NULL && _strcmp(c.args[1], "-0") == 0)
 	{
 		for (i = 0; environ[i] != NULL; i++)
 		{
-			printf("%s", environ[i]);
+			write(1, environ[i], _strlen(environ[i]));
 		}
-		printf("\n");
+		write(1, "\n", 1);
 	}
 	free(c.cmd);
 }

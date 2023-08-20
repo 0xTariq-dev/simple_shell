@@ -10,7 +10,7 @@ int built_in(full_cmd c)
 {
 	int i;
 	builtin_t builtins[] = {{"exit", our_exit},
-				{"env", Print_env}, 
+				{"env", Print_env},
 				{NULL, NULL}};
 
 	for (i = 0; (builtins + i)->name != NULL; i++)

@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- * _free - Frees any number of pointers given 
- * 
+ * _free - Frees any number of pointers given.
+ * @p1: The pointer to be freed.
+ *
  * Return: NOTHING
  */
 void _free(void *p1, ...)
@@ -14,7 +15,7 @@ void _free(void *p1, ...)
 	va_start(ptrs, p1);
 
 	ptr = p1;
-	while(ptr != NULL)
+	while (ptr != NULL)
 	{
 		free(ptr);
 		ptr = va_arg(ptrs, void*);
