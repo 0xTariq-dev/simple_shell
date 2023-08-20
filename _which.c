@@ -26,6 +26,32 @@ char *get_envpath()
 }
 
 /**
+ * _strdup - returns a pointer to a newly allocated space in memory,
+ * which contains a copy of the string given as a parameter.
+ *
+ * @str: given string
+ *
+ * Return: a pointer to memory space with the copy of the string
+ * or exit with value -1 if failed.
+*/
+
+char *_strdup(char *str)
+{
+	int i;
+	char *dup = malloc(_strlen(str) + 1);
+
+	if (dup == NULL)
+	{
+		perror("Error");
+		exit(-1);
+	}
+	for (i = 0; str[i] != '\0'; i++)
+		*(dup + i) = *(str + i);
+	*(dup + i) = *(str + i);
+	return (dup);
+}
+
+/**
  * _which - search for a program
  * in the directories in the PATH environment variable
  * @cmd: the program name to search for
@@ -36,11 +62,13 @@ char *_which(char *cmd)
 {
 	char *fullpath;
 	char *token;
-	char *Path = get_envpath(); /* Calling get_envpath function here */
+	char *Path;
 	struct stat statbuf;
 	/* Check if the cmd is aleardy exist */
 	if (stat(cmd, &statbuf) == 0)
-		return (cmd);
+		return (_strdup(cmd));
+	/* Calling get_envpath function here */
+	Path = get_envpath();
 	strtok(Path, "=");
 	token = strtok(NULL, ":");
 	/* Search in the PATH */

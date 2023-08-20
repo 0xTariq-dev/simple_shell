@@ -19,14 +19,18 @@ int main(void)
 		/** Handling User Input And Execution */
 		line = NULL;
 		strl = prompt(&line, &buffsize);
-		c = get_args(line);
-		c.cmd = _which(c.cmd);
-		exec_cmd(c.cmd, c.args);
+		if (strl != 1)
+		{
+			c = get_args(line);
+			c.cmd = _which(c.cmd);
+			exec_cmd(c.cmd, c.args);
 
-		/** Freeing Allocated Memory */
+			/** Freeing Allocated Memory */
+			free(c.cmd);
+			free(c.args[0]);
+			free(c.args);
+		}	
 		free(line);
-		free(c.args[0]);
-		free(c.args);
 	}
 	return (0);
 }
