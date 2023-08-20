@@ -29,8 +29,7 @@ int main(void)
 			/** Freeing Allocated Memory */
 				free(c.cmd);
 			}
-			free(c.args[0]);
-			free(c.args);
+			_free(c.args[0], c.args, NULL);
 		}
 		free(line);
 	}

@@ -10,6 +10,7 @@ int built_in(full_cmd c)
 {
 	int i;
 	builtin_t builtins[] = {{"exit", our_exit},
+				{"env", Print_env}, 
 				{NULL, NULL}};
 
 	for (i = 0; (builtins + i)->name != NULL; i++)
@@ -25,8 +26,19 @@ int built_in(full_cmd c)
 
 void our_exit(full_cmd c)
 {
-	free(c.Gline);
-	free(c.args[0]);
-	free(c.args);
+	_free(c.Gline, c.args[0], c.args, NULL);
 	exit(0);
+}
+
+void Print_env(full_cmd c)
+{
+	int i = 0;
+
+	c.cmd = _which(c.cmd);
+	exec_cmd(c.cmd, c.args);
+	if (c.args[1] == NULL)
+	{
+		for (; environ[i] != NULL; i++)
+			printf("%s\n", environ[i]);
+	}
 }

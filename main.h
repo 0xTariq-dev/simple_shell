@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <stdarg.h>
 /*
  * Header File: main.h
  * Author: 0xTariq-dev, mostafa1jamal1
@@ -61,6 +62,8 @@ char **tokenize(char *string);
 full_cmd get_args(char *line);
 char *_which(char *cmd);
 char *get_envpath();
+void _free(void *p1, ...);
+void Print_env(full_cmd c);
 
 /* Prototypes for built-in functions */
 int built_in(full_cmd c);
