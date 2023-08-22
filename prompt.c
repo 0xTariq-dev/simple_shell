@@ -11,7 +11,7 @@ ssize_t prompt(char **line, size_t *buffsize)
 
 	/* Printing the prompt */
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
-		write(1, "($) ", 4);
+		write(1, "$ ", 2);
 	/* Take the command from the user and check for errors */
 	strl = getline(line, buffsize, stdin);
 	if (strl == -1)
