@@ -31,7 +31,10 @@ int main(void)
 			}
 			_free(c.args[0], c.args, NULL);
 			if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO))
+			{
+				free(line);
 				return (0);
+			}
 		}
 		free(line);
 	}
