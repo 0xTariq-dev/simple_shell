@@ -1,25 +1,13 @@
 #include "main.h"
 /**
- * prompt - print a prompt and take a command
- * @line: a pointer to the cmd line string
- * @buffsize: a pointer to the buffer size created for the line
- * Return: number of chars of the cmd line
+ * print_prompt - print a prompt if in interactive mode.
  */
-ssize_t prompt(char **line, size_t *buffsize)
+void print_prompt(void)
 {
-	ssize_t strl;
+	char prmpt[] = "$ ";
+	int len = _strlen(prmpt);
 
 	/* Printing the prompt */
 	if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
-		write(1, "$ ", 2);
-	/* Take the command from the user and check for errors */
-	strl = getline(line, buffsize, stdin);
-	if (strl == -1)
-	{
-		if (isatty(STDIN_FILENO) && isatty(STDOUT_FILENO))
-			write(1, "\n", 1);
-		free(*line);
-		exit(-1);
-	}
-	return (strl);
+		write(1, prmpt, len);
 }

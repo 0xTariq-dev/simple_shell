@@ -36,6 +36,6 @@ void Print_env(full_cmd c)
  */
 void our_exit(full_cmd c)
 {
-	_free(c.Gline, c.args[0], c.args, NULL);
+	_free(c.Gline, c.args, NULL);
 	exit(0);
 }
