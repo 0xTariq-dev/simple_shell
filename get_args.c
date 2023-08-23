@@ -1,21 +1,6 @@
 #include "main.h"
 
 /**
- * get_args - split the line given to the shell into a command and arguments.
- * @line: The full line passed to the program.
- *
- * Return: A structure of the command and arguments
- */
-full_cmd get_args(char *line)
-{
-	full_cmd c;
-	/** Intializing the structure and allocating it's memory */
-	c.args = tokenize(line);
-	c.cmd = c.args[0];
-	return (c);
-}
-
-/**
  * token_num - get number of tokens in a string
  * @str: the string
  * Return: number of tokens in the string or -1 on fail
@@ -81,4 +66,19 @@ char **tokenize(char *string)
 		argv[i] = NULL;
 		return (argv);
 	}
+}
+
+/**
+ * get_args - split the line given to the shell into a command and arguments.
+ * @line: The full line passed to the program.
+ *
+ * Return: A structure of the command and arguments
+ */
+full_cmd get_args(char *line)
+{
+	full_cmd c;
+	/** Intializing the structure and allocating it's memory */
+	c.args = tokenize(line);
+	c.cmd = c.args[0];
+	return (c);
 }
