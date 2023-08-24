@@ -33,6 +33,8 @@ int _strcmp(char *s1, char *s2);
  * @cmd: The command name.
  * @args: The arguments passed to the program.
  * @Gline: A pointer to the full command (line);
+ * @prog_name: the name the the program called by
+ * @c_cmd_num: the comulative number of given commands
  */
 
 typedef struct command
@@ -40,6 +42,8 @@ typedef struct command
 	char *cmd;
 	char **args;
 	char *Gline;
+	char *prog_name;
+	int c_cmd_num;
 } full_cmd;
 
 /**
@@ -56,19 +60,19 @@ typedef struct built_in_t
 
 /** Prototypes for the functions used by the shell. */
 
-int exec_cmd(const char *pathname, char **argv);
+int exec_cmd(full_cmd c);
 ssize_t get_input(char **line, size_t *buffsize);
 void print_prompt(void);
 char **tokenize(char *string);
 full_cmd get_args(char *line);
-char *_which(char *cmd);
+char *_which(full_cmd c);
 char *get_envpath();
 void _free(void *p1, ...);
-void Print_env(full_cmd c);
-int chech_empty_str(char *str);
+void print_err_m(char *prog_name, int c);
+void print_notfound(char *prog_name, int c, char *cmd);
 
 /* Prototypes for built-in functions */
 int built_in(full_cmd c);
-void our_exit(full_cmd);
-
+void our_exit(full_cmd c);
+void Print_env(full_cmd c);
 #endif

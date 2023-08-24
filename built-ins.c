@@ -9,8 +9,8 @@ void Print_env(full_cmd c)
 {
 	int i = 0;
 
-	c.cmd = _which(c.cmd);
-	exec_cmd(c.cmd, c.args);
+	c.cmd = _which(c);
+	exec_cmd(c);
 	if (c.args[1] == NULL || _strcmp(c.args[1], "-v") == 0)
 	{
 		for (; environ[i] != NULL; i++)

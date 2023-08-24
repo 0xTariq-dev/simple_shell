@@ -3,6 +3,7 @@
 /**
  * token_num - get number of tokens in a string
  * @str: the string
+ * @delim: the delimiter to tokenize by
  * Return: number of tokens in the string or -1 on fail
  * note: the function doesn't change the original string.
  */

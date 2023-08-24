@@ -54,37 +54,35 @@ char *_strdup(char *str)
 /**
  * _which - search for a program
  * in the directories in the PATH environment variable
- * @cmd: the program name to search for
+ * @c: all what we need
  * Return: the full path if found
- * or -1 if not found
+ * or NULL if not found
  */
-char *_which(char *cmd)
+char *_which(full_cmd c)
 {
 	char *fullpath;
 	char *token;
 	char *Path;
 	struct stat statbuf;
-	/* Check if the cmd is aleardy exist */
-	if (stat(cmd, &statbuf) == 0)
-		return (_strdup(cmd));
-	/* Calling get_envpath function here */
-	Path = get_envpath();
+	/* Check if the c.cmd is aleardy exist */
+	if (stat(c.cmd, &statbuf) == 0)
+		return (_strdup(c.cmd));
+	Path = get_envpath();	/* Calling get_envpath function here */
 	strtok(Path, "=");
 	token = strtok(NULL, ":");
 	/* Search in the PATH */
 	while (token != NULL)
 	{       /* Allocate memory for the potential fullpath and check error */
-		fullpath = malloc(_strlen(cmd) + _strlen(token) + 2);
+		fullpath = malloc(_strlen(c.cmd) + _strlen(token) + 2);
 		if (fullpath == NULL)
 		{
 			free(Path);
 			perror("Error: ");
 			exit(-1);
-		}
-		/* Append the cmd to the token in fullpath */
+		}	/* Append the c.cmd to the token in fullpath */
 		_strcpy(fullpath, token);
 		_strcat(fullpath, "/");
-		_strcat(fullpath, cmd);
+		_strcat(fullpath, c.cmd);
 		/* Check if the potential fullpath is correct */
 		if (stat(fullpath, &statbuf) == 0)
 		{       /* If true: end the function */
@@ -93,7 +91,8 @@ char *_which(char *cmd)
 		}       /* If false: try again */
 		free(fullpath);
 		token = strtok(NULL, ":");
-	}       /* When it is not exist return NULL */
+	}       /* When it is not exist print error and return NULL */
 	free(Path);
+	print_notfound(c.prog_name, c.c_cmd_num, c.cmd);
 	return (NULL);
 }
