@@ -36,7 +36,7 @@ void Print_env(full_cmd c)
  */
 void our_exit(full_cmd c)
 {
-	int st = c.st;
+	int st = 0;
 
 	if (c.args[1] != NULL)
 	{
@@ -47,6 +47,8 @@ void our_exit(full_cmd c)
 			_free(c.Gline, c.args, NULL);
 			exit(2);
 		}
+		_free(c.Gline, c.args, NULL);
+		exit(st);
 	}
 	else
 	{
