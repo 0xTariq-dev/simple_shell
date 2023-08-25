@@ -32,7 +32,11 @@ int main(int __attribute__((unused)) ac, char **av)
 				if (c.cmd != NULL)
 					exec_cmd(c);
 				if (c.cmd == NULL && (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO)))
-					return (127);
+				{
+					_free(c.args, line, NULL);
+					free(c.cmd);
+					exit(127);
+				}
 			/** Freeing Allocated Memory */
 				free(c.cmd);
 			}
