@@ -44,6 +44,7 @@ typedef struct command
 	char *Gline;
 	char *prog_name;
 	int c_cmd_num;
+	int st;
 } full_cmd;
 
 /**
@@ -75,4 +76,6 @@ void print_notfound(char *prog_name, int c, char *cmd);
 int built_in(full_cmd c);
 void our_exit(full_cmd c);
 void Print_env(full_cmd c);
+void print_illegal(full_cmd c);
+int strtonum(char *s);
 #endif

@@ -8,6 +8,7 @@
 int exec_cmd(full_cmd c)
 {
 	int id;
+	int e_status = 0;
 
 	id = fork();
 	/** Checking for the child process pefore executing */
@@ -18,13 +19,15 @@ int exec_cmd(full_cmd c)
 		{
 			print_err_m(c.prog_name, c.c_cmd_num);
 			perror("");
-			exit(-1);
+			exit(EXIT_FAILURE);
 		}
 	}
 	/** Halting the main process until execution */
 	else
 	{
-		wait(&id);
+		wait(&e_status);
 	}
-	return (0);
+	if (e_status != 0)
+		e_status = 2;
+	return (e_status);
 }

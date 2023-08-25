@@ -36,6 +36,21 @@ void Print_env(full_cmd c)
  */
 void our_exit(full_cmd c)
 {
-	_free(c.Gline, c.args, NULL);
-	exit(0);
+	int st = c.st;
+
+	if (c.args[1] != NULL)
+	{
+		st = strtonum(c.args[1]);
+		if (st == -1)
+		{
+			print_illegal(c);
+			_free(c.Gline, c.args, NULL);
+			exit(2);
+		}
+	}
+	else
+	{
+		_free(c.Gline, c.args, NULL);
+		exit(st);
+	}
 }

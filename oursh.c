@@ -12,6 +12,7 @@ int main(int __attribute__((unused)) ac, char **av)
 	size_t buffsize;
 	int i = 0;
 
+
 	/** Infinite loop for handling the shell */
 	while (1)
 	{
@@ -33,8 +34,7 @@ int main(int __attribute__((unused)) ac, char **av)
 					exec_cmd(c);
 				if (c.cmd == NULL && (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO)))
 				{
-					_free(c.args, line, NULL);
-					free(c.cmd);
+					_free(c.args, line, c.cmd, NULL);
 					exit(127);
 				}
 			/** Freeing Allocated Memory */
