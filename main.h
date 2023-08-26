@@ -35,6 +35,7 @@ int _strcmp(char *s1, char *s2);
  * @Gline: A pointer to the full command (line);
  * @prog_name: the name the the program called by
  * @c_cmd_num: the comulative number of given commands
+ * @st: the status to exit with
  */
 
 typedef struct command
