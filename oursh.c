@@ -31,6 +31,8 @@ int main(int __attribute__((unused)) ac, char **av)
 			if (!built_in(c))
 			{
 				c.cmd = _which(c);
+				if (c.cmd == NULL)
+					st = 127;
 				if (c.cmd != NULL)
 					st = exec_cmd(c);
 				if (c.cmd == NULL && (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO)))
