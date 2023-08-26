@@ -9,8 +9,6 @@ void Print_env(full_cmd c)
 {
 	int i = 0;
 
-	c.cmd = _which(c);
-	exec_cmd(c);
 	if (c.args[1] == NULL || _strcmp(c.args[1], "-v") == 0)
 	{
 		for (; environ[i] != NULL; i++)
@@ -19,7 +17,7 @@ void Print_env(full_cmd c)
 			write(1, "\n", 1);
 		}
 	}
-	if (c.args[1] != NULL && _strcmp(c.args[1], "-0") == 0)
+	if (_strcmp(c.args[1], "-0") == 0)
 	{
 		for (i = 0; environ[i] != NULL; i++)
 		{
@@ -27,8 +25,8 @@ void Print_env(full_cmd c)
 		}
 		write(1, "\n", 1);
 	}
-	free(c.cmd);
 }
+
 /**
  * our_exit - Handles the `exit` comman.
  * @c: A strcture of the given command.
