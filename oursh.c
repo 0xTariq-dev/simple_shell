@@ -11,7 +11,7 @@ int main(int __attribute__((unused)) ac, char **av)
 	char *line;
 	size_t buffsize;
 	int i = 0;
-
+	int st = 0;
 
 	/** Infinite loop for handling the shell */
 	while (1)
@@ -25,17 +25,18 @@ int main(int __attribute__((unused)) ac, char **av)
 		c.Gline = line;
 		c.c_cmd_num = i;
 		c.prog_name = av[0];
+		c.st = st;
 		if (c.cmd != NULL)
 		{
 			if (!built_in(c))
 			{
 				c.cmd = _which(c);
 				if (c.cmd != NULL)
-					exec_cmd(c);
+					st = exec_cmd(c);
 				if (c.cmd == NULL && (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO)))
 				{
 					_free(c.args, line, c.cmd, NULL);
-					exit(127);
+					exit(st);
 				}
 			/** Freeing Allocated Memory */
 				free(c.cmd);

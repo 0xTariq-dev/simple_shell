@@ -7,8 +7,7 @@
  */
 int exec_cmd(full_cmd c)
 {
-	int id;
-	int e_status = 0;
+	int id, st, e_st;
 
 	id = fork();
 	/** Checking for the child process pefore executing */
@@ -24,10 +23,7 @@ int exec_cmd(full_cmd c)
 	}
 	/** Halting the main process until execution */
 	else
-	{
-		wait(&e_status);
-	}
-	if (e_status != 0)
-		e_status = 2;
-	return (e_status);
+		wait(&st);
+	e_st = WEXITSTATUS(st);
+	return (e_st);
 }

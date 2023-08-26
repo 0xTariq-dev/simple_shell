@@ -34,7 +34,7 @@ void Print_env(full_cmd c)
  */
 void our_exit(full_cmd c)
 {
-	int st = 0;
+	int st = c.st;
 
 	if (c.args[1] != NULL)
 	{
